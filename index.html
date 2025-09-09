@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khaled Mohamed | Portfolio</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Slab:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <style>
+      /* --- General & Root Styles --- */
+      :root {
+        --primary-color: #ffc107;
+        --bg-dark: #121212;
+        --bg-card: #1e1e1e;
+        --text-light: #e0e0e0;
+        --text-heading: #ffffff;
+        --border-color: rgba(255, 193, 7, 0.2);
+        --border-radius: 10px;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        font-family: "Poppins", sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      /* --- Section Styling --- */
+      section {
+        padding: 80px 0;
+        overflow-x: hidden;
+      }
+
+      .section-title {
+        font-family: "Roboto Slab", serif;
+        color: var(--text-heading);
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 15px;
+        margin-bottom: 50px;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 70px;
+        height: 4px;
+        background-color: var(--primary-color);
+        border-radius: 2px;
+      }
+      .text-center .section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* --- ENHANCED Navigation Bar --- */
+      .navbar {
+        background-color: rgba(18, 18, 18, 0.85);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid transparent; /* Start with transparent border */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      /* Add shadow and border on scroll */
+      .navbar.scrolled {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .logo-icon {
+  background: linear-gradient(135deg, #ffcc00, #ff0066, #6600ff);
+  color: #fff;
+  font-weight: 800;
+  font-family: 'Poppins', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 18px;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(255, 0, 100, 0.5);
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.logo-icon:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 6px 20px rgba(255, 0, 100, 0.7);
+}
+      .nav-link {
+        font-weight: 600;
+        transition: color 0.3s ease;
+        position: relative;
+        padding-bottom: 8px;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: width 0.3s ease;
+      }
+
+      /* Active link indicator style */
+      .nav-link.active,
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+      .nav-link.active::after,
+      .nav-link:hover::after {
+        width: 50%;
+      }
+
+      /* --- Hero Section --- */
+      #home {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+      .hero-text .greeting {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+      
+      .hero-text h1 {
+        /* UPDATED: Responsive font size */
+        font-size: clamp(2.2rem, 6vw, 3rem);
+        font-weight: 700;
+        margin-top: 10px;
+        line-height: 1.2;
+      }
+      .typing-text {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 3s steps(20, end) forwards;
+        width: 0;
+        background: linear-gradient(90deg, #ffcc00, #ff0066, #6600ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      .hero-text p {
+        font-size: 1.1rem;
+        max-width: 550px;
+        margin-top: 20px;
+      }
+      .hero-photo {
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid var(--primary-color);
+        box-shadow: 0 0 40px rgba(255, 193, 7, 0.3);
+        animation: breathe 4s ease-in-out infinite;
+      }
+      @keyframes breathe {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      /* --- Buttons --- */
+      .btn-glow {
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        color: var(--bg-dark);
+        background-color: var(--primary-color);
+        border: 2px solid var(--primary-color);
+        transition: all 0.3s ease;
+        display: inline-block;
+        margin-top: 20px;
+      }
+      .btn-glow.outline {
+        background-color: transparent;
+        color: var(--primary-color);
+      }
+      .btn-glow:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(255, 193, 7, 0.2);
+      }
+
+      /* --- Cards --- */
+      .custom-card {
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+        padding: 25px;
+      }
+      .custom-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+      .card-title {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+      .card-title i {
+        margin-right: 10px;
+      }
+      .skill-badge {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-light);
+        padding: 8px 15px;
+        border-radius: 50px;
+        font-weight: 600;
+        margin: 4px;
+      }
+
+      /* --- Contact Form --- */
+      .contact-form {
+        background-color: var(--bg-card);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+      }
+      .form-control {
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 12px;
+      }
+      .form-control:focus {
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2);
+      }
+
+      /* --- Footer --- */
+      footer {
+        background-color: #111;
+        border-top: 1px solid var(--border-color);
+      }
+      
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px; 
+  padding: 20px 0;
+}
+
+.social-icons a {
+  font-size: 30px;
+  color: #ffffff; 
+  transition: transform 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #ffc107;
+  transform: scale(1.2) rotate(5deg);
+}
+
+
+
+
+      /* --- Back to Top Button --- */
+      #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: var(--bg-dark);
+        border-radius: 50%;
+        text-align: center;
+        font-size: 1.5rem;
+        line-height: 50px;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        z-index: 1000;
+      }
+      #back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      #back-to-top:hover {
+        transform: translateY(-5px);
+      }
+
+      /* --- Responsive Adjustments --- */
+      @media (max-width: 991px) {
+        .hero-text,
+        .hero-photo-wrapper {
+          text-align: center;
+        }
+        .section-title::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+      @media (max-width: 768px) {
+        .hero-photo {
+          margin-top: 40px;
+          width: 220px;
+          height: 220px;
+        }
+        .btn-glow {
+          width: 100%;
+          margin-bottom: 15px;
+        }
+        .btn-glow + .btn-glow {
+          margin-left: 0;
+        }
+        .contact-info-card {
+          margin-bottom: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbar">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#home"
+          ><span class="logo-icon">KM</span></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link">About Me</a>
+            </li>
+            <li class="nav-item">
+              <a href="#skills" class="nav-link">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a href="#projects" class="nav-link">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section id="home">
+      <div class="container">
+        <div class="row align-items-center gy-5">
+          <div class="col-lg-7 hero-text" data-aos="fade-right">
+            <p class="greeting text-light">Hello, I'm Khaled Mohamed</p>
+            <h1 class="typing-text">Frontend Developer</h1>
+            <p>
+              Passionate about creating modern, responsive, and user-friendly
+              web applications. I enjoy bringing ideas to life using clean code
+              and professional design.
+            </p>
+            <a href="#contact" class="btn-glow">📩 Contact me</a>
+            <a
+              href="Khaled_Mohamed_CV.pdf"
+              download
+              class="btn-glow outline ms-lg-3"
+              >Download CV <i class="fa fa-download"></i
+            ></a>
+          </div>
+          <div class="col-lg-5 text-center" data-aos="fade-left">
+            <img src="work.png" alt="profile" class="hero-photo" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="bg-dark">
+      <div class="container" data-aos="fade-up">
+        <h2 class="section-title">About Me</h2>
+        <p class="lead">
+          I’m Khaled, a passionate Frontend Developer with a focus on creating
+          clean, responsive, and user-friendly web applications. I enjoy turning
+          ideas into interactive digital experiences using HTML, CSS,
+          JavaScript, and modern frameworks like Vue.js. Currently, I’m
+          improving my skills through projects and continuous learning, aiming
+          to grow as a professional developer.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title text-center" data-aos="fade-up">Skills</h2>
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+            <div class="custom-card">
+              <h4 class="card-title"><i class="fa fa-link"></i> Frontend</h4>
+              <hr class="border-warning w-25" />
+              <span class="badge skill-badge">HTML</span>
+              <span class="badge skill-badge">CSS</span>
+              <span class="badge skill-badge">JavaScript</span>
+              <span class="badge skill-badge">Bootstrap</span>
+              <span class="badge skill-badge">Tailwind</span>
+              <span class="badge skill-badge">Vue.js</span>
+              <span class="badge skill-badge">React.js</span>
+              <span class="badge skill-badge">Typescript</span>
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <div class="custom-card">
+              <h4 class="card-title"><i class="fa fa-code"></i> Programming</h4>
+              <hr class="border-warning w-25" />
+              <span class="badge skill-badge">JavaScript</span>
+              <span class="badge skill-badge">Python</span>
+              <span class="badge skill-badge">Java</span>
+              <span class="badge skill-badge">C++</span>
+              <span class="badge skill-badge">C</span>
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
+            <div class="custom-card">
+              <h4 class="card-title">
+                <i class="fa fa-users"></i> Soft Skills
+              </h4>
+              <hr class="border-warning w-25" />
+              <p>
+                Teamwork, Leadership, Analytical Thinking, Public Speaking,
+                Emotional Intelligence
+              </p>
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+          >
+            <div class="custom-card">
+              <h4 class="card-title"><i class="fa fa-pencil"></i> UI/UX</h4>
+              <hr class="border-warning w-25" />
+              <p>
+                Skilled in creating user-friendly interfaces with a focus on
+                simplicity, accessibility, and modern design principles.
+                Experienced in wireframing and prototyping using Figma.
+              </p>
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="zoom-in"
+            data-aos-delay="400"
+          >
+            <div class="custom-card">
+              <h4 class="card-title">
+                <i class="fa fa-code-branch"></i> Git/GitHub
+              </h4>
+              <hr class="border-warning w-25" />
+              <p>
+                Proficient in version control with Git and collaborative
+                development using GitHub. Experienced in branching strategies,
+                pull requests, and managing code efficiently.
+              </p>
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="zoom-in"
+            data-aos-delay="500"
+          >
+            <div class="custom-card">
+              <h4 class="card-title">
+                <i class="fa fa-star"></i> Other Skills
+              </h4>
+              <hr class="border-warning w-25" />
+              <p>
+                OOP, Design Patterns, Data Structures & Algorithms, Clean Code,
+                Best Practices
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="bg-dark">
+      <div class="container">
+        <h2 class="section-title text-center" data-aos="fade-up">Projects</h2>
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in-up">
+            <div class="custom-card d-flex flex-column">
+              <h4 class="card-title">Amazon Simulation</h4>
+              <p>
+                A responsive e-commerce project with product browsing and a
+                shopping cart, inspired by Amazon’s design.
+              </p>
+              <a
+                href="https://github.com/khaledmohamed-22/Amazon.git"
+                target="_blank"
+                class="btn-glow outline mt-auto text-center"
+                >View Project</a
+              >
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="zoom-in-up"
+            data-aos-delay="100"
+          >
+            <div class="custom-card d-flex flex-column">
+              <h4 class="card-title">Big Gym Store</h4>
+              <p>
+                E-commerce site with a video background and glassmorphism navbar
+                for a modern shopping experience.
+              </p>
+              <a
+                href="https://github.com/khaledmohamed-22/big-gym.git"
+                target="_blank"
+                class="btn-glow outline mt-auto text-center"
+                >View Project</a
+              >
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="zoom-in-up"
+            data-aos-delay="200"
+          >
+            <div class="custom-card d-flex flex-column">
+              <h4 class="card-title">Jobzy Dashboard</h4>
+              <p>
+                A responsive HR dashboard for managing job applications and
+                recruitment stats with interactive charts.
+              </p>
+              <a
+                href="https://github.com/khaledmohamed-22/jobzy.git"
+                target="_blank"
+                class="btn-glow outline mt-auto text-center"
+                >View Project</a
+              >
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="zoom-in-up"
+            data-aos-delay="300"
+          >
+            <div class="custom-card d-flex flex-column">
+              <h4 class="card-title">MediLink</h4>
+              <p>
+                A modern, user-friendly web app built with Vue.js to streamline
+                booking doctor appointments.
+              </p>
+              <a
+                href="https://medilink-two.vercel.app/"
+                target="_blank"
+                class="btn-glow outline mt-auto text-center"
+                >View Project</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title text-center" data-aos="fade-up">Contact Me</h2>
+        <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-md-4">
+            <div class="custom-card text-center contact-info-card">
+              <h4 class="card-title"><i class="fa fa-envelope"></i> Email</h4>
+              <p>khaledmomaged@gmail.com</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="custom-card text-center contact-info-card">
+              <h4 class="card-title"><i class="fa fa-phone"></i> Phone</h4>
+              <p>01129504098</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="custom-card text-center contact-info-card">
+              <h4 class="card-title"><i class="fa fa-link"></i> Links</h4>
+              <div class="social-icons">
+                <a
+                  href="https://www.facebook.com/index.php/"
+                  class="fa fa-facebook"
+                  target="_blank"
+                ></a>
+                <a
+                  href="https://github.com/khaledmohamed-22"
+                  class="fa fa-github"
+                  target="_blank"
+                ></a>
+                <a
+                  href="https://www.instagram.com/khaledxm0hamedx?igsh=anVlbnloMTBkbW93"
+                  class="fa fa-instagram"
+                  target="_blank"
+                ></a>
+                <a
+                  href="https://www.linkedin.com/in/khaled-mohamed-668067307"
+                  class="fa fa-linkedin"
+                  target="_blank"
+                ></a>
+                <a
+                  href="mailto:khaledmomaged@gmail.com"
+                  class="fa fa-google"
+                  target="_blank"
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-8" data-aos="zoom-in" data-aos-delay="200">
+            <form id="contact-form" class="p-4 p-md-5 contact-form">
+              <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" id="name" class="form-control" required />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" id="email" class="form-control" required />
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea
+                  id="message"
+                  class="form-control"
+                  rows="4"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-glow w-100">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container text-center py-4">
+        <div class="social-icons mb-3">
+          <a
+            href="https://www.facebook.com/index.php/"
+            class="fa fa-facebook"
+            target="_blank"
+          ></a>
+          <a
+            href="https://github.com/khaledmohamed-22"
+            class="fa fa-github"
+            target="_blank"
+          ></a>
+          <a
+            href="https://www.instagram.com/khaledxm0hamedx?igsh=anVlbnloMTBkbW93"
+            class="fa fa-instagram"
+            target="_blank"
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/khaled-mohamed-668067307"
+            class="fa fa-linkedin"
+            target="_blank"
+          ></a>
+          <a
+            href="mailto:khaledmomaged@gmail.com"
+            class="fa fa-google"
+            target="_blank"
+          ></a>
+        </div>
+        <p class="mb-0">© 2025 Khaled Mohamed | All Rights Reserved</p>
+      </div>
+    </footer>
+
+    <a href="#home" id="back-to-top" class="fa fa-arrow-up"></a>
+
+    <script>
+      // Initialize AOS (Animate on Scroll)
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      // Navbar Collapse on Link Click
+      document
+        .querySelectorAll(".navbar-nav .nav-link")
+        .forEach(function (elem) {
+          elem.addEventListener("click", function () {
+            const navbarCollapse = document.querySelector(".navbar-collapse");
+            if (navbarCollapse.classList.contains("show")) {
+              new bootstrap.Collapse(navbarCollapse).hide();
+            }
+          });
+        });
+
+      // EmailJS Initialization
+      (function () {
+        emailjs.init("YOUR_USER_ID"); // IMPORTANT: Replace with your EmailJS User ID
+      })();
+
+      // Contact Form Submission
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          emailjs
+            .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+              // IMPORTANT: Replace with your Service & Template IDs
+              from_name: document.getElementById("name").value,
+              from_email: document.getElementById("email").value,
+              message: document.getElementById("message").value,
+            })
+            .then(
+              function (response) {
+                alert("✅ Message sent successfully!");
+                document.getElementById("contact-form").reset();
+              },
+              function (error) {
+                alert("❌ Failed to send message. Please try again.");
+              }
+            );
+        });
+
+      // Back to Top & Navbar Scroll Logic
+      const backToTopButton = document.getElementById("back-to-top");
+      const navbar = document.getElementById("navbar");
+      const navLinks = document.querySelectorAll(".nav-link");
+      const sections = document.querySelectorAll("section");
+
+      window.onscroll = function () {
+        // Show/hide back to top button and navbar shadow
+        if (
+          document.body.scrollTop > 100 ||
+          document.documentElement.scrollTop > 100
+        ) {
+          backToTopButton.classList.add("show");
+          navbar.classList.add("scrolled");
+        } else {
+          backToTopButton.classList.remove("show");
+          navbar.classList.remove("scrolled");
+        }
+
+        // Highlight active nav link on scroll
+        let currentSection = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          if (pageYOffset >= sectionTop - 75) {
+            currentSection = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href").includes(currentSection)) {
+            link.classList.add("active");
+          }
+        });
+      };
+    </script>
+  </body>
+</html>
