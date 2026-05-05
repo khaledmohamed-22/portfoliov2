@@ -35,11 +35,19 @@
     />
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <!-- Google Fonts: Syne + Manrope -->
+
+    <!--
+      FONT CHOICES:
+      • Display / Headings → "DM Serif Display" — elegant serif with warmth and personality.
+        Gives headings gravitas without feeling cold or corporate.
+      • Body / UI text     → "DM Sans" — the humanist sans companion to DM Serif.
+        Highly legible at small sizes, soft curves, very comfortable to read.
+      • Mono accents       → "JetBrains Mono" — for code-style labels and tags.
+    -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <!-- EmailJS -->
@@ -47,8 +55,8 @@
 
     <style>
       /* ================================================
-       ROOT VARIABLES
-    ================================================ */
+         ROOT VARIABLES
+      ================================================ */
       :root {
         --bg: #09090f;
         --bg-card: #111118;
@@ -57,25 +65,29 @@
         --accent-glow: rgba(232, 184, 75, 0.28);
         --teal: #4ecdc4;
         --teal-dim: rgba(78, 205, 196, 0.12);
-        --text: #b0b0c4;
+        --text: #b4b4cc;
         --text-muted: #606078;
         --heading: #eeeef8;
         --border: rgba(232, 184, 75, 0.14);
         --border-subtle: rgba(255, 255, 255, 0.07);
         --radius: 12px;
         --radius-lg: 20px;
-        --font-display: "Syne", sans-serif;
-        --font-body: "Manrope", sans-serif;
+
+        /* ── FONT STACK ── */
+        --font-display: "DM Serif Display", Georgia, serif;
+        --font-body: "DM Sans", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
         --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
       [data-theme="light"] {
-        --bg: #f3f3f8;
+        --bg: #f5f4f0;
         --bg-card: #ffffff;
         --accent: #c9962a;
         --accent-dim: rgba(201, 150, 42, 0.1);
         --accent-glow: rgba(201, 150, 42, 0.2);
-        --text: #4a4a60;
+        --text: #4a4a5e;
         --text-muted: #888898;
         --heading: #111122;
         --border: rgba(201, 150, 42, 0.2);
@@ -97,17 +109,20 @@
         background-color: var(--bg);
         color: var(--text);
         font-family: var(--font-body);
-        font-size: 16px;
-        line-height: 1.7;
+        font-size: 16px; /* comfortable base */
+        line-height: 1.75; /* generous leading for readability */
         overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-optical-sizing: auto;
         transition:
           background-color 0.4s ease,
           color 0.4s ease;
       }
 
       /* ================================================
-       SCROLL PROGRESS BAR
-    ================================================ */
+         SCROLL PROGRESS BAR
+      ================================================ */
       #scroll-progress {
         position: fixed;
         top: 0;
@@ -120,8 +135,8 @@
       }
 
       /* ================================================
-       CUSTOM CURSOR
-    ================================================ */
+         CUSTOM CURSOR
+      ================================================ */
       .cursor-dot {
         width: 7px;
         height: 7px;
@@ -149,8 +164,11 @@
       }
 
       /* ================================================
-       TYPOGRAPHY
-    ================================================ */
+         TYPOGRAPHY
+         DM Serif Display for headings — warm, editorial.
+         DM Sans for body — humanist, airy, very legible.
+         JetBrains Mono for micro-labels and code snippets.
+      ================================================ */
       h1,
       h2,
       h3,
@@ -158,30 +176,48 @@
       h5 {
         font-family: var(--font-display);
         color: var(--heading);
-        font-weight: 700;
-        line-height: 1.15;
+        font-weight: 400; /* DM Serif Display looks best at regular weight */
+        line-height: 1.2;
+        letter-spacing: -0.01em;
       }
 
+      /* Slightly bolder h4 / h5 (skill cards, project titles) */
+      h4,
+      h5 {
+        font-family: var(--font-body);
+        font-weight: 600;
+        letter-spacing: 0;
+      }
+
+      /* Section labels — monospace accent, small-caps feel */
       .section-label {
-        font-size: 0.73rem;
-        font-weight: 700;
-        letter-spacing: 0.2em;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--accent);
         display: block;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
 
       .section-title {
-        font-size: clamp(1.75rem, 3.5vw, 2.3rem);
-        font-weight: 800;
+        font-size: clamp(1.9rem, 3.8vw, 2.6rem);
+        font-weight: 400;
         color: var(--heading);
         margin-bottom: 14px;
+        line-height: 1.15;
+      }
+
+      /* Italic accent word in section titles via <em> */
+      .section-title em {
+        font-style: italic;
+        color: var(--accent);
       }
 
       .section-divider {
         width: 38px;
-        height: 3px;
+        height: 2px;
         background: linear-gradient(90deg, var(--accent), transparent);
         border-radius: 2px;
         margin-bottom: 52px;
@@ -191,9 +227,17 @@
         padding: 100px 0;
       }
 
+      /* Body prose — comfortable reading */
+      p,
+      li {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--text);
+      }
+
       /* ================================================
-       NAVBAR
-    ================================================ */
+         NAVBAR
+      ================================================ */
       .navbar {
         padding: 20px 0;
         background: transparent;
@@ -208,7 +252,7 @@
         border-bottom: 1px solid var(--border);
       }
       [data-theme="light"] .navbar.scrolled {
-        background: rgba(243, 243, 248, 0.92);
+        background: rgba(245, 244, 240, 0.93);
       }
 
       .navbar-brand {
@@ -225,10 +269,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: var(--font-display);
-        font-weight: 800;
-        font-size: 15px;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 13px;
         color: #090910;
+        letter-spacing: 0.02em;
         transform: rotate(-6deg);
         transition: transform 0.35s var(--ease);
         flex-shrink: 0;
@@ -237,16 +282,18 @@
         transform: rotate(0deg) scale(1.08);
       }
       .logo-text {
-        font-family: var(--font-display);
-        font-weight: 700;
+        font-family: var(--font-body);
+        font-weight: 600;
         font-size: 0.95rem;
         color: var(--heading);
+        letter-spacing: 0.01em;
       }
 
       .nav-link {
-        font-weight: 600;
+        font-family: var(--font-body);
+        font-weight: 500;
         font-size: 0.875rem;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.01em;
         color: var(--text) !important;
         padding: 6px 13px !important;
         border-radius: 8px;
@@ -282,8 +329,8 @@
       }
 
       /* ================================================
-       HERO
-    ================================================ */
+         HERO
+      ================================================ */
       #home {
         min-height: 100vh;
         display: flex;
@@ -331,11 +378,12 @@
         border: 1px solid var(--border);
         border-radius: 50px;
         padding: 6px 16px;
-        font-size: 0.78rem;
-        font-weight: 600;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 500;
         color: var(--accent);
-        margin-bottom: 22px;
-        letter-spacing: 0.05em;
+        margin-bottom: 24px;
+        letter-spacing: 0.08em;
       }
       .hero-badge .dot {
         width: 6px;
@@ -356,30 +404,36 @@
         }
       }
 
+      /* Hero headline — large DM Serif Display */
       .hero-title {
-        font-size: clamp(2.4rem, 5.5vw, 4rem);
-        font-weight: 800;
-        line-height: 1.07;
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 5.8vw, 4.2rem);
+        font-weight: 400;
+        line-height: 1.1;
         color: var(--heading);
-        margin-bottom: 18px;
+        margin-bottom: 20px;
+        letter-spacing: -0.01em;
       }
       .hero-title .highlight {
+        font-style: italic;
         background: linear-gradient(130deg, var(--accent) 30%, #ff8c42 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
 
+      /* Typewriter line — DM Sans, medium */
       .hero-typewriter {
-        font-size: clamp(0.95rem, 2.2vw, 1.2rem);
-        font-weight: 500;
+        font-family: var(--font-body);
+        font-size: clamp(1rem, 2.2vw, 1.2rem);
+        font-weight: 400;
         color: var(--text);
         margin-bottom: 22px;
         min-height: 2em;
       }
       .typewriter-role {
         color: var(--teal);
-        font-weight: 700;
+        font-weight: 600;
         border-right: 2px solid var(--teal);
         padding-right: 3px;
         animation: blinkCursor 0.8s ease-in-out infinite;
@@ -394,12 +448,13 @@
         }
       }
 
+      /* Hero body copy */
       .hero-desc {
-        font-size: 0.97rem;
+        font-size: 1.02rem;
         color: var(--text);
-        max-width: 490px;
-        line-height: 1.82;
-        margin-bottom: 34px;
+        max-width: 500px;
+        line-height: 1.85;
+        margin-bottom: 36px;
       }
 
       .hero-cta {
@@ -408,6 +463,7 @@
         gap: 12px;
       }
 
+      /* Buttons — DM Sans semibold */
       .btn-primary-custom {
         display: inline-flex;
         align-items: center;
@@ -415,14 +471,15 @@
         padding: 13px 26px;
         background: var(--accent);
         color: #090910;
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 0.88rem;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 0.92rem;
         border-radius: 10px;
         text-decoration: none;
         border: 2px solid var(--accent);
         transition: all 0.35s var(--ease);
         cursor: pointer;
+        letter-spacing: 0.01em;
       }
       .btn-primary-custom:hover {
         background: transparent;
@@ -438,13 +495,14 @@
         padding: 13px 26px;
         background: transparent;
         color: var(--heading);
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 0.88rem;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 0.92rem;
         border-radius: 10px;
         text-decoration: none;
         border: 2px solid var(--border-subtle);
         transition: all 0.35s var(--ease);
+        letter-spacing: 0.01em;
       }
       .btn-outline-custom:hover {
         border-color: var(--accent);
@@ -452,6 +510,7 @@
         transform: translateY(-3px);
       }
 
+      /* Hero stats */
       .hero-stats {
         display: flex;
         gap: 36px;
@@ -461,17 +520,18 @@
       }
       .stat-number {
         font-family: var(--font-display);
-        font-size: 1.75rem;
-        font-weight: 800;
+        font-size: 2rem;
+        font-weight: 400;
         color: var(--heading);
         line-height: 1;
       }
       .stat-label {
-        font-size: 0.76rem;
+        font-family: var(--font-mono);
+        font-size: 0.67rem;
         color: var(--text-muted);
-        font-weight: 600;
-        margin-top: 4px;
-        letter-spacing: 0.04em;
+        font-weight: 500;
+        margin-top: 5px;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
       }
 
@@ -480,7 +540,6 @@
         position: relative;
         display: inline-block;
       }
-
       .hero-photo-frame {
         width: 290px;
         height: 290px;
@@ -508,7 +567,6 @@
       [data-theme="light"] .hero-float-card {
         background: rgba(255, 255, 255, 0.9);
       }
-
       .hero-float-card.card-1 {
         bottom: -18px;
         left: -44px;
@@ -537,35 +595,35 @@
           transform: translateY(8px);
         }
       }
-
       .float-icon {
         font-size: 1.15rem;
       }
       .float-text {
-        font-size: 0.73rem;
-        font-weight: 700;
+        font-family: var(--font-body);
+        font-size: 0.76rem;
+        font-weight: 600;
         color: var(--heading);
       }
       .float-sub {
-        font-size: 0.63rem;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
         color: var(--text-muted);
       }
 
       /* ================================================
-       ABOUT
-    ================================================ */
+         ABOUT
+      ================================================ */
       .about-text .lead {
-        font-size: 1rem;
+        font-size: 1.02rem;
         line-height: 1.85;
         color: var(--text);
-        margin-bottom: 20px;
+        margin-bottom: 22px;
       }
-
       .about-highlights {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-        margin-top: 24px;
+        margin-top: 26px;
       }
       .highlight-chip {
         display: inline-flex;
@@ -575,8 +633,9 @@
         border: 1px solid var(--border-subtle);
         border-radius: 8px;
         padding: 7px 14px;
-        font-size: 0.82rem;
-        font-weight: 600;
+        font-family: var(--font-body);
+        font-size: 0.84rem;
+        font-weight: 500;
         color: var(--text);
         text-decoration: none;
         transition: all 0.3s ease;
@@ -592,12 +651,11 @@
       }
 
       /* ================================================
-       EXPERIENCE
-    ================================================ */
+         EXPERIENCE
+      ================================================ */
       #experience {
         background: var(--bg-card);
       }
-
       .timeline {
         position: relative;
         padding-left: 28px;
@@ -615,7 +673,6 @@
           transparent 100%
         );
       }
-
       .timeline-item {
         position: relative;
         margin-bottom: 48px;
@@ -625,7 +682,7 @@
         content: "";
         position: absolute;
         left: -34px;
-        top: 6px;
+        top: 8px;
         width: 10px;
         height: 10px;
         border-radius: 50%;
@@ -637,10 +694,12 @@
         margin-bottom: 0;
       }
 
+      /* Mono badge for period */
       .timeline-period {
         display: inline-block;
-        font-size: 0.72rem;
-        font-weight: 700;
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 500;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--accent);
@@ -650,14 +709,16 @@
         margin-bottom: 10px;
       }
       .timeline-role {
-        font-size: 1rem;
-        font-weight: 700;
+        font-family: var(--font-body);
+        font-size: 1.05rem;
+        font-weight: 600;
         color: var(--heading);
         margin-bottom: 4px;
       }
       .timeline-company {
-        font-size: 0.86rem;
-        font-weight: 600;
+        font-family: var(--font-body);
+        font-size: 0.88rem;
+        font-weight: 500;
         color: var(--teal);
         margin-bottom: 14px;
       }
@@ -668,8 +729,9 @@
       .timeline-points li {
         position: relative;
         padding-left: 18px;
-        margin-bottom: 7px;
-        font-size: 0.88rem;
+        margin-bottom: 8px;
+        font-size: 0.92rem;
+        line-height: 1.72;
         color: var(--text);
       }
       .timeline-points li::before {
@@ -678,18 +740,17 @@
         left: 0;
         color: var(--accent);
         font-size: 0.78rem;
-        top: 1px;
+        top: 3px;
       }
 
       /* ================================================
-       SKILLS
-    ================================================ */
+         SKILLS
+      ================================================ */
       .skills-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
         gap: 18px;
       }
-
       .skill-card {
         background: var(--bg-card);
         border: 1px solid var(--border-subtle);
@@ -715,10 +776,12 @@
         margin-bottom: 14px;
       }
       .skill-card h4 {
-        font-size: 0.92rem;
-        font-weight: 700;
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        font-weight: 600;
         color: var(--heading);
         margin-bottom: 14px;
+        letter-spacing: 0;
       }
       .skill-tags {
         display: flex;
@@ -732,8 +795,9 @@
         color: var(--text);
         padding: 5px 11px;
         border-radius: 6px;
-        font-size: 0.78rem;
-        font-weight: 500;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 400;
         transition: all 0.28s ease;
       }
       .skill-tag:hover {
@@ -743,8 +807,8 @@
       }
 
       /* ================================================
-       PROJECTS
-    ================================================ */
+         PROJECTS
+      ================================================ */
       #projects {
         background: var(--bg-card);
       }
@@ -764,7 +828,6 @@
         transform: translateY(-7px);
         box-shadow: 0 28px 58px rgba(0, 0, 0, 0.35);
       }
-
       .project-header {
         padding: 26px 26px 0;
         display: flex;
@@ -805,7 +868,6 @@
         color: var(--accent);
         background: var(--accent-dim);
       }
-
       .project-body {
         padding: 18px 26px 26px;
         flex: 1;
@@ -813,30 +875,32 @@
         flex-direction: column;
       }
       .project-title {
-        font-size: 1rem;
-        font-weight: 700;
+        font-family: var(--font-body);
+        font-size: 1.05rem;
+        font-weight: 600;
         color: var(--heading);
-        margin-bottom: 9px;
+        margin-bottom: 10px;
+        letter-spacing: 0;
       }
       .project-desc {
-        font-size: 0.87rem;
+        font-size: 0.9rem;
         color: var(--text);
-        line-height: 1.72;
+        line-height: 1.78;
         flex: 1;
         margin-bottom: 18px;
       }
-
       .project-tech {
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
       }
       .tech-tag {
-        font-size: 0.7rem;
-        font-weight: 700;
+        font-family: var(--font-mono);
+        font-size: 0.66rem;
+        font-weight: 500;
         padding: 4px 10px;
         border-radius: 5px;
-        letter-spacing: 0.03em;
+        letter-spacing: 0.04em;
         text-transform: uppercase;
       }
       .tech-vue {
@@ -881,8 +945,8 @@
       }
 
       /* ================================================
-       EDUCATION
-    ================================================ */
+         EDUCATION
+      ================================================ */
       .edu-card {
         background: var(--bg-card);
         border: 1px solid var(--border-subtle);
@@ -910,34 +974,37 @@
         flex-shrink: 0;
       }
       .edu-info h4 {
-        font-size: 1rem;
-        font-weight: 700;
+        font-family: var(--font-body);
+        font-size: 1.05rem;
+        font-weight: 600;
         color: var(--heading);
-        margin-bottom: 4px;
+        margin-bottom: 5px;
       }
       .edu-school {
-        font-size: 0.86rem;
+        font-family: var(--font-body);
+        font-size: 0.88rem;
         color: var(--teal);
-        font-weight: 600;
-        margin-bottom: 7px;
+        font-weight: 500;
+        margin-bottom: 8px;
       }
       .edu-period {
-        font-size: 0.76rem;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
         color: var(--text-muted);
-        font-weight: 600;
-        letter-spacing: 0.05em;
+        font-weight: 500;
+        letter-spacing: 0.06em;
       }
       .edu-desc {
-        font-size: 0.86rem;
+        font-size: 0.9rem;
         color: var(--text);
-        margin-top: 10px;
+        margin-top: 12px;
         margin-bottom: 0;
-        line-height: 1.7;
+        line-height: 1.78;
       }
 
       /* ================================================
-       CONTACT
-    ================================================ */
+         CONTACT
+      ================================================ */
       #contact {
         background: var(--bg-card);
       }
@@ -947,7 +1014,6 @@
         flex-direction: column;
         gap: 14px;
       }
-
       .contact-item {
         display: flex;
         align-items: center;
@@ -978,15 +1044,17 @@
         flex-shrink: 0;
       }
       .contact-item-label {
-        font-size: 0.7rem;
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
         color: var(--text-muted);
-        font-weight: 700;
-        letter-spacing: 0.08em;
+        font-weight: 500;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
       }
       .contact-item-value {
-        font-size: 0.87rem;
-        font-weight: 600;
+        font-family: var(--font-body);
+        font-size: 0.88rem;
+        font-weight: 500;
         color: var(--heading);
       }
 
@@ -997,14 +1065,14 @@
         border-radius: var(--radius-lg);
         padding: 34px;
       }
-
       .form-group {
         margin-bottom: 18px;
       }
       .form-label {
-        font-size: 0.76rem;
-        font-weight: 700;
-        letter-spacing: 0.07em;
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text-muted);
         margin-bottom: 8px;
@@ -1018,7 +1086,8 @@
         border-radius: 10px;
         padding: 12px 15px;
         font-family: var(--font-body);
-        font-size: 0.88rem;
+        font-size: 0.92rem;
+        line-height: 1.6;
         transition: all 0.3s ease;
         outline: none;
       }
@@ -1029,14 +1098,15 @@
       }
       .form-control::placeholder {
         color: var(--text-muted);
+        font-style: italic;
       }
       textarea.form-control {
         resize: none;
         min-height: 120px;
       }
-
       .form-error {
-        font-size: 0.76rem;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
         color: #ff6b6b;
         margin-top: 5px;
         display: none;
@@ -1049,8 +1119,8 @@
       }
 
       /* ================================================
-       FOOTER
-    ================================================ */
+         FOOTER
+      ================================================ */
       footer {
         background: var(--bg);
         border-top: 1px solid var(--border-subtle);
@@ -1083,14 +1153,15 @@
         transform: translateY(-3px);
       }
       .footer-copy {
-        font-size: 0.82rem;
+        font-family: var(--font-body);
+        font-size: 0.84rem;
         color: var(--text-muted);
         text-align: center;
       }
 
       /* ================================================
-       BACK TO TOP
-    ================================================ */
+         BACK TO TOP
+      ================================================ */
       #back-to-top {
         position: fixed;
         bottom: 26px;
@@ -1121,8 +1192,8 @@
       }
 
       /* ================================================
-       RESPONSIVE
-    ================================================ */
+         RESPONSIVE
+      ================================================ */
       @media (max-width: 991px) {
         .hero-title,
         .hero-badge,
@@ -1156,7 +1227,6 @@
           margin: 0 auto;
         }
       }
-
       @media (max-width: 768px) {
         section {
           padding: 72px 0;
@@ -1198,7 +1268,7 @@
 
     <!-- ================================================
        NAVBAR
-  ================================================ -->
+    ================================================ -->
     <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#home">
@@ -1251,7 +1321,7 @@
 
     <!-- ================================================
        HERO
-  ================================================ -->
+    ================================================ -->
     <section id="home">
       <div class="container">
         <div class="row align-items-center gy-5">
@@ -1347,13 +1417,13 @@
 
     <!-- ================================================
        ABOUT
-  ================================================ -->
+    ================================================ -->
     <section id="about">
       <div class="container">
         <div class="row">
           <div class="col-lg-8" data-aos="fade-up">
             <span class="section-label">Who I Am</span>
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title">About <em>Me</em></h2>
             <div class="section-divider"></div>
             <div class="about-text">
               <p class="lead">
@@ -1367,7 +1437,7 @@
                   Transport</strong
                 >
                 (expected 2026), I've complemented my academic journey with
-                intensive real-world training through ITI .
+                intensive real-world training through ITI.
               </p>
               <p class="lead">
                 My technical stack spans
@@ -1414,23 +1484,22 @@
 
     <!-- ================================================
        EXPERIENCE
-  ================================================ -->
+    ================================================ -->
     <section id="experience">
       <div class="container">
         <span class="section-label">Career</span>
-        <h2 class="section-title">Experience</h2>
+        <h2 class="section-title"><em>Experience</em></h2>
         <div class="section-divider"></div>
         <div class="row">
           <div class="col-lg-8" data-aos="fade-up">
             <div class="timeline">
-              <!-- ITI Vue.js Track -->
               <div class="timeline-item">
                 <span class="timeline-period">August 2025</span>
                 <div class="timeline-role">
                   Frontend Developer — Vue.js Track
                 </div>
                 <div class="timeline-company">
-                  ITI Front-End Technologies -The New Capital branch
+                  ITI Front-End Technologies · The New Capital Branch
                 </div>
                 <ul class="timeline-points">
                   <li>
@@ -1447,13 +1516,11 @@
                   </li>
                 </ul>
               </div>
-
-              <!-- ITI / Huawei Internship -->
               <div class="timeline-item">
                 <span class="timeline-period">Jul 2024 – Jan 2025</span>
                 <div class="timeline-role">Web Development &amp; AI Intern</div>
                 <div class="timeline-company">
-                  ITI Front-End Technologies -Aswan branch
+                  ITI Front-End Technologies · Aswan Branch
                 </div>
                 <ul class="timeline-points">
                   <li>
@@ -1486,11 +1553,11 @@
 
     <!-- ================================================
        SKILLS
-  ================================================ -->
+    ================================================ -->
     <section id="skills">
       <div class="container">
         <span class="section-label">What I Know</span>
-        <h2 class="section-title">Technical Skills</h2>
+        <h2 class="section-title">Technical <em>Skills</em></h2>
         <div class="section-divider"></div>
         <div class="skills-grid">
           <div class="skill-card" data-aos="zoom-in">
@@ -1504,7 +1571,6 @@
               <span class="skill-tag">RESTful APIs</span>
             </div>
           </div>
-
           <div class="skill-card" data-aos="zoom-in" data-aos-delay="80">
             <div class="skill-card-icon">
               <i class="fas fa-layer-group"></i>
@@ -1520,7 +1586,6 @@
               <span class="skill-tag">TypeScript</span>
             </div>
           </div>
-
           <div class="skill-card" data-aos="zoom-in" data-aos-delay="160">
             <div class="skill-card-icon"><i class="fas fa-code"></i></div>
             <h4>Programming Languages</h4>
@@ -1532,19 +1597,17 @@
               <span class="skill-tag">C</span>
             </div>
           </div>
-
           <div class="skill-card" data-aos="zoom-in" data-aos-delay="240">
             <div class="skill-card-icon"><i class="fas fa-database"></i></div>
             <h4>Databases &amp; APIs</h4>
             <div class="skill-tags">
               <span class="skill-tag">MongoDB</span>
               <span class="skill-tag">SQL</span>
-              <span class="skill-tag">CRUD Operations</span>
+              <span class="skill-tag">CRUD Ops</span>
               <span class="skill-tag">HTTP Methods</span>
               <span class="skill-tag">API Integration</span>
             </div>
           </div>
-
           <div class="skill-card" data-aos="zoom-in" data-aos-delay="320">
             <div class="skill-card-icon"><i class="fas fa-tools"></i></div>
             <h4>Tools &amp; Concepts</h4>
@@ -1559,7 +1622,6 @@
               <span class="skill-tag">Design Patterns</span>
             </div>
           </div>
-
           <div class="skill-card" data-aos="zoom-in" data-aos-delay="400">
             <div class="skill-card-icon"><i class="fas fa-brain"></i></div>
             <h4>AI &amp; Soft Skills</h4>
@@ -1578,11 +1640,11 @@
 
     <!-- ================================================
        PROJECTS
-  ================================================ -->
+    ================================================ -->
     <section id="projects">
       <div class="container">
         <span class="section-label">What I've Built</span>
-        <h2 class="section-title">Projects</h2>
+        <h2 class="section-title">Featured <em>Projects</em></h2>
         <div class="section-divider"></div>
         <div class="row g-4">
           <!-- MediLink -->
@@ -1626,7 +1688,7 @@
             </div>
           </div>
 
-          <!-- Ai model -->
+          <!-- AI Model -->
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="project-card">
               <div class="project-header">
@@ -1634,7 +1696,11 @@
                   class="project-icon"
                   style="background: rgba(255, 193, 7, 0.12)"
                 >
-                <img src="https://img.icons8.com/?size=100&id=9inONWn9EvfI&format=png&color=000000" style="width: 60%;height: 60%;">
+                  <img
+                    src="https://img.icons8.com/?size=100&id=9inONWn9EvfI&format=png&color=000000"
+                    style="width: 60%; height: 60%"
+                    alt="AI"
+                  />
                 </div>
                 <div class="project-links">
                   <a
@@ -1645,41 +1711,33 @@
                     title="View on GitHub"
                   >
                     <i class="fab fa-github"></i>
-
                   </a>
-                      <div class="project-links">
                   <a
                     href="https://ai-model-dashboard-iota.vercel.app/"
                     target="_blank"
                     rel="noopener"
                     class="project-link-btn"
-                    title="View on GitHub"
+                    title="Live Demo"
                   >
-                     <i class="fas fa-external-link-alt"></i>
+                    <i class="fas fa-external-link-alt"></i>
                   </a>
                 </div>
-                  </a>
-                </div>
-                
               </div>
               <div class="project-body">
-                <h3 class="project-title">Diabetes prediction ai Model</h3>
+                <h3 class="project-title">Diabetes Prediction AI Model</h3>
                 <p class="project-desc">
-                  The goal of this project is to predict the presence or risk of
-                  diabetes using a supervised classification model trained and
-                  evaluated locally. The project uses the PIMA Indians Diabetes
-                  dataset and follows the requested machine learning pipeline:
-                  data loading, exploratory data analysis, preprocessing, class
-                  imbalance handling, XGBoost model training, hyperparameter
-                  tuning, evaluation on a held-out test set, and serving the
-                  trained model through an API endpoint.
+                  Predicts diabetes risk using a supervised XGBoost
+                  classification model. Follows a full ML pipeline: EDA,
+                  preprocessing, class imbalance handling, hyperparameter
+                  tuning, and model evaluation. Served via a FastAPI endpoint
+                  with an interactive dashboard frontend.
                 </p>
                 <div class="project-tech">
                   <span class="tech-tag tech-html">HTML5</span>
                   <span class="tech-tag tech-css">CSS3</span>
                   <span class="tech-tag tech-js">JavaScript</span>
                   <span class="tech-tag tech-bootstrap">Bootstrap</span>
-                  <span class="tech-tag tech-bootstrap">FastApi</span>
+                  <span class="tech-tag tech-bootstrap">FastAPI</span>
                   <span class="tech-tag tech-bootstrap">Python</span>
                   <span class="tech-tag tech-bootstrap">XGBoost</span>
                 </div>
@@ -1687,7 +1745,7 @@
             </div>
           </div>
 
-          <!-- Jobzy Dashboard -->
+          <!-- E-commerce Backend -->
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
             <div class="project-card">
               <div class="project-header">
@@ -1710,18 +1768,17 @@
                 </div>
               </div>
               <div class="project-body">
-                <h3 class="project-title">Backend E-commerce API project</h3>
+                <h3 class="project-title">Backend E-commerce API</h3>
                 <p class="project-desc">
-                  a real-world backend application using Node.js and Express,
-                  applying : RESTful API with clean MVC architecture
-                  Authentication & Authorization (JWT + Roles) Secure password
-                  hashing File upload for product images Full CRUD operations
-                  (Users, Products, Orders) MongoDB & Mongoose integration Error
-                  handling & middleware structure Postman collection for testing
+                  A real-world backend application using Node.js and Express
+                  with clean MVC architecture. Features JWT authentication &amp;
+                  role-based authorization, secure password hashing, product
+                  image uploads, full CRUD, and MongoDB integration. Includes a
+                  Postman collection for comprehensive testing.
                 </p>
                 <div class="project-tech">
-                  <span class="tech-tag tech-js">Nodejs</span>
-                  <span class="tech-tag tech-css">Expressjs</span>
+                  <span class="tech-tag tech-js">Node.js</span>
+                  <span class="tech-tag tech-css">Express.js</span>
                   <span class="tech-tag tech-chart">MongoDB</span>
                   <span class="tech-tag tech-bootstrap">RESTful API</span>
                 </div>
@@ -1729,7 +1786,7 @@
             </div>
           </div>
 
-          <!-- Big Gym -->
+          <!-- Anubis Gym -->
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="project-card">
               <div class="project-header">
@@ -1752,26 +1809,19 @@
                 </div>
               </div>
               <div class="project-body">
-                <h3 class="project-title">Anubis Gym management System</h3>
+                <h3 class="project-title">Anubis Gym Management System</h3>
                 <p class="project-desc">
-                  The Anubis Gym Management System is an integrated, modular
-                  software ecosystem designed to digitize, centralize, and
-                  automate the operational and administrative processes of
-                  Anubis Gym. The system aims to replace manual and semi-manual
-                  workflows with a unified digital platform that improves
-                  operational efficiency, data consistency, and overall service
-                  quality A centralized web-based platform used by gym
-                  administrators, staff, and trainers to manage memberships,
-                  subscriptions, payments, schedules, access permissions, and
-                  operational reports.
+                  An integrated, modular platform that digitizes and automates
+                  gym operations — memberships, subscriptions, payments,
+                  schedules, access permissions, and operational reports.
+                  Replaces manual workflows with a centralized web-based system
+                  for administrators, staff, and trainers.
                 </p>
                 <div class="project-tech">
                   <span class="tech-tag tech-html">Vue.js</span>
-                  <span class="tech-tag tech-css">
-                    Component-Based Architecture</span
-                  >
-                  <span class="tech-tag tech-css"> HTML5</span>
-                  <span class="tech-tag tech-css"> CSS3</span>
+                  <span class="tech-tag tech-css">Component Architecture</span>
+                  <span class="tech-tag tech-css">HTML5</span>
+                  <span class="tech-tag tech-css">CSS3</span>
                   <span class="tech-tag tech-js">JavaScript</span>
                   <span class="tech-tag tech-bootstrap">Bootstrap</span>
                 </div>
@@ -1784,11 +1834,11 @@
 
     <!-- ================================================
        EDUCATION
-  ================================================ -->
+    ================================================ -->
     <section id="education">
       <div class="container">
         <span class="section-label">Academic Background</span>
-        <h2 class="section-title">Education</h2>
+        <h2 class="section-title"><em>Education</em></h2>
         <div class="section-divider"></div>
         <div class="row g-4">
           <div class="col-lg-9" data-aos="fade-up">
@@ -1810,7 +1860,6 @@
               </div>
             </div>
           </div>
-
           <div class="col-lg-9" data-aos="fade-up" data-aos-delay="100">
             <div class="edu-card">
               <div
@@ -1822,7 +1871,8 @@
               <div class="edu-info">
                 <h4>ITI Frontend Development Certification</h4>
                 <div class="edu-school" style="color: var(--teal)">
-                  ITI (Information Technology Institute) /The New Capital Branch
+                  ITI (Information Technology Institute) · The New Capital
+                  Branch
                 </div>
                 <div class="edu-period">
                   Jul 2024 – Jan 2025 &nbsp;|&nbsp; Aug 2025 (Vue.js Track)
@@ -1842,21 +1892,21 @@
 
     <!-- ================================================
        CONTACT
-  ================================================ -->
+    ================================================ -->
     <section id="contact">
       <div class="container">
         <span class="section-label">Get In Touch</span>
-        <h2 class="section-title">Contact Me</h2>
+        <h2 class="section-title">Contact <em>Me</em></h2>
         <div class="section-divider"></div>
         <div class="row g-5">
           <!-- Contact Info -->
           <div class="col-lg-4" data-aos="fade-right">
             <p
               style="
-                font-size: 0.95rem;
+                font-size: 0.97rem;
                 color: var(--text);
                 margin-bottom: 26px;
-                line-height: 1.82;
+                line-height: 1.85;
               "
             >
               I'm open to internships, junior developer roles, and collaborative
@@ -1873,7 +1923,6 @@
                   <div class="contact-item-value">khaledmomaged@gmail.com</div>
                 </div>
               </a>
-
               <a href="tel:+201129504098" class="contact-item">
                 <div class="contact-item-icon">
                   <i class="fas fa-phone"></i>
@@ -1883,7 +1932,6 @@
                   <div class="contact-item-value">+20 112 950 4098</div>
                 </div>
               </a>
-
               <a
                 href="https://www.linkedin.com/in/khaled-mohamed-668067307"
                 target="_blank"
@@ -1901,7 +1949,6 @@
                   <div class="contact-item-value">khaled-mohamed-668067307</div>
                 </div>
               </a>
-
               <a
                 href="https://github.com/khaledmohamed-22"
                 target="_blank"
@@ -1975,7 +2022,7 @@
                       <textarea
                         id="message"
                         class="form-control"
-                        placeholder="Hi Khaled, I'd love to discuss..."
+                        placeholder="Hi Khaled, I'd love to discuss…"
                         required
                       ></textarea>
                       <div class="form-error">Please write a message.</div>
@@ -2009,7 +2056,7 @@
 
     <!-- ================================================
        FOOTER
-  ================================================ -->
+    ================================================ -->
     <footer>
       <div class="container">
         <div class="social-row">
@@ -2019,43 +2066,38 @@
             rel="noopener"
             class="social-btn"
             aria-label="LinkedIn"
-          >
-            <i class="fab fa-linkedin"></i>
-          </a>
+            ><i class="fab fa-linkedin"></i
+          ></a>
           <a
             href="https://github.com/khaledmohamed-22"
             target="_blank"
             rel="noopener"
             class="social-btn"
             aria-label="GitHub"
-          >
-            <i class="fab fa-github"></i>
-          </a>
+            ><i class="fab fa-github"></i
+          ></a>
           <a
             href="https://www.instagram.com/khaledxm0hamedx"
             target="_blank"
             rel="noopener"
             class="social-btn"
             aria-label="Instagram"
-          >
-            <i class="fab fa-instagram"></i>
-          </a>
+            ><i class="fab fa-instagram"></i
+          ></a>
           <a
             href="https://www.facebook.com/index.php/"
             target="_blank"
             rel="noopener"
             class="social-btn"
             aria-label="Facebook"
-          >
-            <i class="fab fa-facebook"></i>
-          </a>
+            ><i class="fab fa-facebook"></i
+          ></a>
           <a
             href="mailto:khaledmomaged@gmail.com"
             class="social-btn"
             aria-label="Email"
-          >
-            <i class="fas fa-envelope"></i>
-          </a>
+            ><i class="fas fa-envelope"></i
+          ></a>
         </div>
         <p class="footer-copy">
           Designed &amp; Built by
@@ -2074,19 +2116,15 @@
 
     <!-- ================================================
        SCRIPTS
-  ================================================ -->
+    ================================================ -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-      /* ================================================
-       AOS INIT
-    ================================================ */
+      /* AOS */
       AOS.init({ duration: 750, once: true, offset: 55 });
 
-      /* ================================================
-       SCROLL PROGRESS BAR
-    ================================================ */
+      /* Scroll progress */
       const progressBar = document.getElementById("scroll-progress");
       window.addEventListener(
         "scroll",
@@ -2100,25 +2138,20 @@
         { passive: true },
       );
 
-      /* ================================================
-       CUSTOM CURSOR (desktop / fine-pointer only)
-    ================================================ */
+      /* Custom cursor */
       const cursorDot = document.getElementById("cursorDot");
       const cursorRing = document.getElementById("cursorRing");
-
       if (window.matchMedia("(pointer: fine)").matches) {
         let mouseX = 0,
           mouseY = 0,
           ringX = 0,
           ringY = 0;
-
         document.addEventListener("mousemove", (e) => {
           mouseX = e.clientX;
           mouseY = e.clientY;
           cursorDot.style.left = mouseX + "px";
           cursorDot.style.top = mouseY + "px";
         });
-
         (function animateRing() {
           ringX += (mouseX - ringX) * 0.14;
           ringY += (mouseY - ringY) * 0.14;
@@ -2126,7 +2159,6 @@
           cursorRing.style.top = ringY + "px";
           requestAnimationFrame(animateRing);
         })();
-
         document
           .querySelectorAll("a, button, .project-card, .skill-card, .edu-card")
           .forEach((el) => {
@@ -2147,9 +2179,7 @@
         cursorRing.style.display = "none";
       }
 
-      /* ================================================
-       TYPEWRITER EFFECT
-    ================================================ */
+      /* Typewriter */
       const roles = [
         "Software Engineer",
         "Frontend Developer",
@@ -2161,7 +2191,6 @@
         charIndex = 0,
         isDeleting = false;
       const roleEl = document.getElementById("typewriterRole");
-
       function typeWriter() {
         const current = roles[roleIndex];
         if (!isDeleting) {
@@ -2184,12 +2213,9 @@
       }
       setTimeout(typeWriter, 900);
 
-      /* ================================================
-       DARK / LIGHT THEME TOGGLE
-    ================================================ */
+      /* Theme toggle */
       const themeToggle = document.getElementById("themeToggle");
       let isDark = true;
-
       themeToggle.addEventListener("click", () => {
         isDark = !isDark;
         document.body.setAttribute("data-theme", isDark ? "dark" : "light");
@@ -2198,41 +2224,32 @@
           : '<i class="fas fa-sun"></i>';
       });
 
-      /* ================================================
-       NAVBAR SCROLL + ACTIVE LINK
-    ================================================ */
+      /* Navbar scroll + active link */
       const navbar = document.getElementById("navbar");
       const navLinks = document.querySelectorAll(".nav-link");
       const sections = document.querySelectorAll("section[id]");
       const backToTop = document.getElementById("back-to-top");
-
       window.addEventListener(
         "scroll",
         () => {
           const scrollY = window.scrollY;
-
           navbar.classList.toggle("scrolled", scrollY > 50);
           backToTop.classList.toggle("show", scrollY > 300);
-
           let current = "";
           sections.forEach((section) => {
-            if (scrollY >= section.offsetTop - 95) {
+            if (scrollY >= section.offsetTop - 95)
               current = section.getAttribute("id");
-            }
           });
           navLinks.forEach((link) => {
             link.classList.remove("active");
-            if (link.getAttribute("href") === "#" + current) {
+            if (link.getAttribute("href") === "#" + current)
               link.classList.add("active");
-            }
           });
         },
         { passive: true },
       );
 
-      /* ================================================
-       NAVBAR COLLAPSE ON MOBILE CLICK
-    ================================================ */
+      /* Mobile nav collapse on click */
       navLinks.forEach((link) => {
         link.addEventListener("click", () => {
           const navCollapse = document.querySelector(".navbar-collapse");
@@ -2242,29 +2259,20 @@
         });
       });
 
-      /* ================================================
-       EMAILJS INIT
-       ⚠️ Replace the placeholder values below with
-          your own EmailJS credentials before deploying.
-    ================================================ */
+      /* EmailJS */
       (function () {
-        emailjs.init("YOUR_USER_ID"); // ← Replace with your EmailJS Public Key
+        emailjs.init("YOUR_USER_ID");
       })();
 
-      /* ================================================
-       CONTACT FORM — VALIDATION + SUBMISSION
-    ================================================ */
+      /* Contact form */
       document
         .getElementById("contact-form")
         .addEventListener("submit", function (e) {
           e.preventDefault();
-
           const nameEl = document.getElementById("name");
           const emailEl = document.getElementById("email");
           const messageEl = document.getElementById("message");
           let valid = true;
-
-          // Validate each required field
           [nameEl, emailEl, messageEl].forEach((el) => {
             const empty = !el.value.trim();
             const invalidEmail =
@@ -2275,18 +2283,13 @@
             el.classList.toggle("is-invalid", hasError);
             if (hasError) valid = false;
           });
-
           if (!valid) return;
-
           const btn = document.getElementById("submitBtn");
           const statusDiv = document.getElementById("form-status");
-
           btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
           btn.disabled = true;
-
           emailjs
             .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-              // ← Replace with your EmailJS Service & Template IDs
               from_name: nameEl.value,
               from_email: emailEl.value,
               subject: document.getElementById("subject").value,
@@ -2315,7 +2318,6 @@
             );
         });
 
-      // Clear validation state on input
       document.querySelectorAll(".form-control").forEach((input) => {
         input.addEventListener("input", () =>
           input.classList.remove("is-invalid"),
